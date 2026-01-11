@@ -550,34 +550,40 @@ header p {
   </header>
 
   <section class="section">
-    <!-- Audio Player -->
+    <!-- Audio Player - FIXED AUDIO SOURCE -->
     <div class="audio-player">
       <div class="player-title">
         <i class="fas fa-music"></i>
-        <h3>மாட்டு பொங்கல் பாடல்</h3>
+        <h3>பொங்கல் இசை</h3>
       </div>
-      <div class="song-info">பொங்கல் வாழ்த்து பாடல் - கிராமிய இசை</div>
-         </div>
-         <audio id="audioTop">
-            <source src="https://raw.githubusercontent.com/mgrnagrpongal2026-cell/tamil/blob/main/samy.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+      
+      <div class="song-info">பாரம்பரிய பொங்கல் பாடல்</div>
+      
+      <!-- AUDIO FIX: Corrected the source URL -->
+      <audio id="festivalAudio" preload="metadata">
+        <!-- Replace with your actual audio file URL -->
+        <source src="https://raw.githubusercontent.com/mgrnagrpongal2026-cell/tamil/main/samy.mp3" type="audio/mpeg">
+        உங்கள் உலாவி ஆடியோவை ஆதரிக்கவில்லை.
       </audio>
+      
       <div class="controls">
-        <button class="control-btn" id="prev-btn">
+        <button class="control-btn" id="rewindBtn">
           <i class="fas fa-step-backward"></i>
         </button>
-        <button class="control-btn" id="play-btn">
+        <button class="control-btn" id="playPauseBtn">
           <i class="fas fa-play"></i>
         </button>
-        <button class="control-btn" id="next-btn">
+        <button class="control-btn" id="forwardBtn">
           <i class="fas fa-step-forward"></i>
         </button>
       </div>
+      
       <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
+        <div class="progress-bar" id="progressBar"></div>
       </div>
-      <div style="margin-top: 10px; font-size: 0.8rem;">
-        <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+      
+      <div style="margin-top: 10px; font-size: 0.8rem; text-align: center;">
+        <span id="currentTime">0:00</span> / <span id="totalDuration">0:00</span>
       </div>
     </div>
 
@@ -714,73 +720,99 @@ header p {
 </div>
 
 <script>
-// Audio Player
-const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3');
-const playBtn = document.getElementById('play-btn');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const progressBar = document.getElementById('progress-bar');
-const currentTimeEl = document.getElementById('current-time');
-const durationEl = document.getElementById('duration');
+// ============================================
+// AUDIO PLAYER - FIXED VERSION
+// ============================================
+const audioPlayer = document.getElementById('festivalAudio');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const rewindBtn = document.getElementById('rewindBtn');
+const forwardBtn = document.getElementById('forwardBtn');
+const progressBar = document.getElementById('progressBar');
+const currentTimeEl = document.getElementById('currentTime');
+const totalDurationEl = document.getElementById('totalDuration');
 
 let isPlaying = false;
 
-function togglePlay() {
-  if (isPlaying) {
-    audio.pause();
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  } else {
-    audio.play();
-    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-  }
-  isPlaying = !isPlaying;
+// Format time from seconds to MM:SS
+function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
+// Update progress bar and time display
 function updateProgress() {
-  const { currentTime, duration } = audio;
-  const progressPercent = (currentTime / duration) * 100;
-  progressBar.style.width = `${progressPercent}%`;
-  
-  // Format time
-  const formatTime = (time) => {
-    const mins = Math.floor(time / 60);
-    const secs = Math.floor(time % 60);
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-  };
-  
-  currentTimeEl.textContent = formatTime(currentTime);
-  if (duration) {
-    durationEl.textContent = formatTime(duration);
+  if (audioPlayer.duration) {
+    const progressPercent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+    currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
   }
 }
 
-function setProgress(e) {
-  const width = this.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-  
-  audio.currentTime = (clickX / width) * duration;
-}
+// Initialize audio when metadata is loaded
+audioPlayer.addEventListener('loadedmetadata', function() {
+  totalDurationEl.textContent = formatTime(audioPlayer.duration);
+});
 
-playBtn.addEventListener('click', togglePlay);
-prevBtn.addEventListener('click', () => {
-  audio.currentTime = Math.max(0, audio.currentTime - 10);
+// Play/Pause functionality - FIXED for browser autoplay restrictions
+playPauseBtn.addEventListener('click', function() {
+  if (!isPlaying) {
+    // Try to play the audio
+    const playPromise = audioPlayer.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Audio started successfully
+        isPlaying = true;
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      }).catch(error => {
+        // Audio failed to play (usually due to browser restrictions)
+        console.log("Audio playback failed:", error);
+        alert("தொடு பின்னர் இசை பொத்தானை அழுத்தவும். சில உலாவிகள் தானாக இசையை தொடங்க அனுமதிக்காது.");
+      });
+    }
+  } else {
+    // Pause the audio
+    audioPlayer.pause();
+    isPlaying = false;
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+  }
 });
-nextBtn.addEventListener('click', () => {
-  audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+
+// Rewind 10 seconds
+rewindBtn.addEventListener('click', function() {
+  audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - 10);
 });
-audio.addEventListener('timeupdate', updateProgress);
-audio.addEventListener('ended', () => {
+
+// Forward 10 seconds
+forwardBtn.addEventListener('click', function() {
+  audioPlayer.currentTime = Math.min(audioPlayer.duration, audioPlayer.currentTime + 10);
+});
+
+// Update progress as audio plays
+audioPlayer.addEventListener('timeupdate', updateProgress);
+
+// Reset play button when audio ends
+audioPlayer.addEventListener('ended', function() {
   isPlaying = false;
-  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
 });
 
-// Set fake duration for demo
-audio.addEventListener('loadedmetadata', () => {
-  durationEl.textContent = '1:30';
+// Allow clicking on progress bar to seek
+document.querySelector('.progress-container').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const width = rect.width;
+  const duration = audioPlayer.duration;
+  
+  if (duration) {
+    audioPlayer.currentTime = (clickX / width) * duration;
+  }
 });
 
-// Touch color change functionality
+// ============================================
+// TOUCH COLOR CHANGE FUNCTIONALITY
+// ============================================
 const colorButtons = document.querySelectorAll('.color-btn');
 const colorChangeArea = document.getElementById('color-change-area');
 
@@ -797,7 +829,9 @@ colorButtons.forEach(button => {
   });
 });
 
-// 3D Flip for poetry card
+// ============================================
+// 3D FLIP FOR POETRY CARD
+// ============================================
 const poetryCard = document.getElementById('poetry-card');
 let isFlipped = false;
 
@@ -810,7 +844,9 @@ poetryCard.addEventListener('click', function() {
   }
 });
 
-// Mobile touch events for cards
+// ============================================
+// MOBILE TOUCH EVENTS FOR CARDS
+// ============================================
 const cards = document.querySelectorAll('.card');
 cards.forEach(card => {
   card.addEventListener('touchstart', function() {
@@ -822,13 +858,17 @@ cards.forEach(card => {
   });
 });
 
-// Floating animation for multiple elements
+// ============================================
+// FLOATING ANIMATION FOR MULTIPLE ELEMENTS
+// ============================================
 const floatingElements = document.querySelectorAll('.floating');
 floatingElements.forEach((el, index) => {
   el.style.animationDelay = `${index * 0.5}s`;
 });
 
-// Parallax effect on scroll
+// ============================================
+// PARALLAX EFFECT ON SCROLL
+// ============================================
 window.addEventListener('scroll', () => {
   const scrolled = window.pageYOffset;
   const parallaxElements = document.querySelectorAll('.card-3d');
@@ -839,7 +879,9 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Initialize with some animations
+// ============================================
+// INITIALIZE WITH ANIMATIONS
+// ============================================
 document.addEventListener('DOMContentLoaded', () => {
   // Add some confetti effect on load
   setTimeout(() => {
@@ -868,8 +910,10 @@ document.addEventListener('DOMContentLoaded', () => {
       animation.onfinish = () => confetti.remove();
     }
   }, 1000);
+  
+  // Display a friendly message about audio
+  console.log("பொங்கல் திருவிழா வலைப்பக்கம் தயார்! இசையை கேட்க பொத்தானை அழுத்தவும்.");
 });
 </script>
 </body>
-
 </html>
