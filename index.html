@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>மாட்டு பொங்கல் | சக்காளம்மன் – கிருஷ்ணர் சாமி</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --earth: #7c2d12;
+  --sun: #f59e0b;
+  --leaf: #15803d;
+  --milk: #fffaf0;
+  --bg: #fff7ed;
+  --clay-red: #c2410c;
+  --gold: #d97706;
+  --temple-orange: #ea580c;
+  --prayer-blue: #0ea5e9;
+  --festival-pink: #db2777;
+  --touch-color-1: #fbbf24;
+  --touch-color-2: #10b981;
+  --touch-color-3: #8b5cf6;
+  --touch-color-4: #f97316;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  background: linear-gradient(to bottom, #fff7ed, #ffedd5);
+  color: #1f2937;
+  line-height: 1.8;
+  overflow-x: hidden;
+  touch-action: pan-y;
+  min-height: 100vh;
+}
+
+/* Mobile-first responsive design */
+.container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, var(--earth), #b45309);
+  color: #fff;
+  text-align: center;
+  padding: 30px 16px 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><path d="M50,5 L60,40 L95,40 L65,60 L75,95 L50,75 L25,95 L35,60 L5,40 L40,40 Z" fill="white"/></svg>');
+  background-size: 80px;
+  animation: twinkle 8s infinite linear;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.1; }
+}
+
+header h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  position: relative;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+  font-size: 1rem;
+  opacity: .95;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.ribbon {
+  background: var(--sun);
+  color: #3f1d0b;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  position: relative;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); }
+  50% { box-shadow: 0 4px 20px rgba(245, 158, 11, 0.7); }
+  100% { box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); }
+}
+
+.section {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px 16px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  animation: fadeUp 1.4s ease both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 237, 213, 0.5);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--earth), var(--sun));
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--earth);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.title i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.poetry {
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #374151;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.7), rgba(255, 237, 213, 0.7));
+  border-radius: 15px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  perspective: 1000px;
+}
+
+.poetry.flipped {
+  transform: rotateY(180deg);
+}
+
+.poetry-front, .poetry-back {
+  backface-visibility: hidden;
+  position: relative;
+}
+
+.poetry-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 15px;
+}
+
+.timebox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.time {
+  background: var(--milk);
+  border: 2px dashed var(--sun);
+  padding: 12px 18px;
+  border-radius: 16px;
+  font-weight: 700;
+  color: #92400e;
+  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.time:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.list li {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.heart {
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.heart span {
+  display: block;
+  margin: 8px 0;
+  padding: 8px 12px;
+  background: rgba(255, 250, 240, 0.7);
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.heart span:active {
+  background: var(--touch-color-1);
+  transform: scale(0.98);
+}
+
+.info-card {
+  background: linear-gradient(135deg, #fed7aa, #fdba74);
+  border-radius: 18px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 10px 20px rgba(194, 65, 12, 0.15);
+  border-left: 6px solid var(--clay-red);
+}
+
+.wood-panel {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><pattern id="wood" patternUnits="userSpaceOnUse" width="10" height="10"><path d="M0,0 L10,0 L10,10 Z" fill="rgba(120,53,15,0.05)"/><path d="M0,0 L0,10 L10,10 Z" fill="rgba(120,53,15,0.05)"/></pattern><rect width="200" height="200" fill="url(%23wood)"/></svg>');
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(124, 45, 18, 0.2);
+}
+
+.handwritten {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #431407;
+}
+
+.highlight {
+  background: rgba(254, 243, 199, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: var(--clay-red);
+}
+
+.date-time {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 18px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.date-time i {
+  color: var(--earth);
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.date-time strong {
+  color: var(--clay-red);
+}
+
+.organizers {
+  text-align: center;
+  font-style: italic;
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(255, 250, 240, 0.7);
+  border-radius: 10px;
+  color: var(--earth);
+  font-weight: 600;
+}
+
+.footer {
+  background: linear-gradient(to top, #78350f, #92400e);
+  color: #fff;
+  text-align: center;
+  padding: 30px 16px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" opacity="0.05"><text x="5" y="35" font-size="30">🌾</text></svg>');
+}
+
+.footer b {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.mantra {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  opacity: .95;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* Audio Player Styles */
+.audio-player {
+  background: linear-gradient(135deg, var(--prayer-blue), #3b82f6);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-player::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" opacity="0.1"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="2"/><path d="M30,35 L45,50 L30,65 Z M55,35 L70,50 L55,65 Z" fill="white"/></svg>');
+  background-size: 120px;
+}
+
+.player-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.player-title i {
+  margin-right: 12px;
+  font-size: 1.5rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.control-btn:active {
+  transform: scale(0.9);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  border-radius: 4px;
+  transition: width 0.1s linear;
+}
+
+.song-info {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Touch Color Change Elements */
+.color-change-area {
+  padding: 15px;
+  border-radius: 15px;
+  margin: 20px 0;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+  border: 2px dashed var(--sun);
+  transition: background 0.5s ease, transform 0.3s ease;
+}
+
+.color-change-area h3 {
+  margin-bottom: 10px;
+  color: var(--earth);
+}
+
+.color-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.color-btn:active {
+  transform: scale(1.2);
+}
+
+/* 3D/6D Effects */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+}
+
+.card-3d:hover {
+  transform: rotateY(10deg) rotateX(5deg);
+}
+
+.parallax-bg {
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.floating {
+  animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .card {
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+  
+  .time {
+    min-width: 100%;
+  }
+  
+  .controls {
+    gap: 15px;
+  }
+  
+  .control-btn {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) {
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .section {
+    padding: 30px 25px;
+  }
+  
+  .card {
+    padding: 26px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <header>
+    <h1>🌾🐄 மாட்டு பொங்கல் திருவிழா 🐄🌾</h1>
+    <p>அருள்மிகு ஸ்ரீ சக்காளம்மன் – கிருஷ்ணர் சாமி கோயில்</p>
+    
+    <div class="ribbon">16.01.2026 | மாலை 5:45 – 6:30</div>
+  </header>
+
+  <section class="section">
+    <!-- Audio Player -->
+    <div class="audio-player">
+      <div class="player-title">
+        <i class="fas fa-music"></i>
+        <h3>மாட்டு பொங்கல் பாடல்</h3>
+      </div>
+      <div class="song-info">பொங்கல் வாழ்த்து பாடல் - கிராமிய இசை</div>
+      <div class="controls">
+        <button class="control-btn" id="prev-btn">
+          <i class="fas fa-step-backward"></i>
+        </button>
+        <button class="control-btn" id="play-btn">
+          <i class="fas fa-play"></i>
+        </button>
+        <button class="control-btn" id="next-btn">
+          <i class="fas fa-step-forward"></i>
+        </button>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div style="margin-top: 10px; font-size: 0.8rem;">
+        <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+      </div>
+    </div>
+
+    <!-- Touch Color Change Area -->
+    <div class="color-change-area" id="color-change-area">
+      <h3><i class="fas fa-palette"></i> தொடு வண்ண மாற்றம்</h3>
+      <p>கீழே உள்ள வண்ண பொத்தான்களை தொட்டால் பக்கத்தின் வண்ணம் மாறும்</p>
+      <div class="color-buttons">
+        <div class="color-btn" style="background-color: var(--touch-color-1);" data-color="var(--touch-color-1)"></div>
+        <div class="color-btn" style="background-color: var(--touch-color-2);" data-color="var(--touch-color-2)"></div>
+        <div class="color-btn" style="background-color: var(--touch-color-3);" data-color="var(--touch-color-3)"></div>
+        <div class="color-btn" style="background-color: var(--touch-color-4);" data-color="var(--touch-color-4)"></div>
+        <div class="color-btn" style="background: linear-gradient(45deg, #f59e0b, #10b981);" data-color="linear-gradient(45deg, #f59e0b, #10b981)"></div>
+      </div>
+    </div>
+
+    <div class="card card-3d">
+      <div class="title"><i class="fas fa-hands-praying"></i> ஒரு சடங்கு அல்ல… ஒரு வாழ்க்கை வேண்டுதல்…</div>
+      <p>
+        சாமி மாடி அபிஷேகத்தில் கலந்து கொள்வது  
+        வெறும் நின்னு பார்ப்பது இல்லை…  
+        <b>நம்ம மனசை இறக்கி வைக்கிற தருணம்.</b>
+      </p>
+      <p>
+        கையில் சாஞ்சி நீர் ஊற்றும்போது,  
+        நம்ம கவலை, நம்ம கஷ்டம்,  
+        நம்ம ஆசை, நம்ம பயம் –  
+        எல்லாமே அதுக்குள்ள கலந்து போகுது.
+      </p>
+      <p>
+        அந்த நிமிஷத்துல  
+        சாமி முன்னாடி  
+        <b>நம்ம எல்லாரும் ஒரே மனசு.</b>
+      </p>
+    </div>
+
+    <!-- Important Information Card -->
+    <div class="info-card floating">
+      <div class="wood-panel">
+        <div class="handwritten">
+          <p>மாட்டு பொங்கல் அன்று, நாம் அனைவரும் வீட்டில் பொங்க வைத்த <span class="highlight">"பொலி கொட்டும் அரிசி கஞ்சி" (பொங்கல் தண்ணீர்)</span>, வீட்டில் சாமி கூமிட்ட பிறகு, <span class="highlight">சக்காளம்மன் – கிருஷ்ணர் சாமி கோயிலில்</span> சாமி மாடி மீது ஊர்த்து வழக்கம் பழைய காலம் முதல் நம்ம ஊர்ல நடந்து வருகிறது.</p>
+          
+          <p style="margin-top: 20px;">இதுவரை ஒவ்வொரு வீட்டிலும் கஞ்சி தண்ணீரை தனித்தனியாக ஊரில் விட்டு செல்வோம்.</p>
+          
+          <p style="margin-top: 20px; font-weight: 700; color: var(--clay-red);">இந்த ஆண்டு சிறப்பு முறையில், கோயிலில் வைக்கப்பட்டுள்ள ஒரு பெரிய அண்டாவில் அனைவரும் தங்கள் வீட்டில் பொங்க வைத்த பொலி கொட்டும் கஞ்சி நீரை ஊற்றி சேர்க்க வேண்டும்.</p>
+          
+          <div class="date-time">
+            <i class="fas fa-calendar-alt"></i> 
+            <strong>16.01.2026 – வெள்ளிக்கிழமை</strong><br>
+
+            <i class="fas fa-clock"></i> 
+            மாலை <strong>5:45 மணி</strong> முதல் <strong>6:30 மணி</strong> வரை<br><br>
+
+            <i class="fas fa-praying-hands"></i> 
+            அம்மன் அருளுடன் <strong>சிறப்பு பூஜை</strong><br>
+
+            <i class="fas fa-water"></i> 
+            பக்தர்கள் நலம் பெற <strong>அபிஷேகம்</strong><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card heart">
+      <div class="title"><i class="fas fa-heart"></i> மனசுக்குள்ள நடக்குற மாற்றம்</div>
+      <span>• மனசு சுமந்த பாரம் மெல்ல கரையும்</span>
+      <span>• "என்ன ஆகுமோ"ன்னு இருந்த பயம் விலகும்</span>
+      <span>• கண்ணுக்குத் தெரியாத நிம்மதி பிறக்கும்</span>
+      <span>• "சாமி இருக்காரு"ன்னு நம்பிக்கை திரும்ப வரும்</span>
+    </div>
+
+    <div class="card">
+      <div class="title"><i class="fas fa-tractor"></i> உழைப்புக்கும் வாழ்க்கைக்கும்</div>
+      <ul class="list">
+        <li>மாடுகள் ஆரோக்கியமா இருக்கும்</li>
+        <li>பால் வளமும் உழைப்பின் பலனும் கூடும்</li>
+        <li>மழை கருணையோட பெய்யும்</li>
+        <li>வயல் பசுமையா மாறும்</li>
+        <li>ஊருக்குள்ள ஒற்றுமை நிலைக்கும்</li>
+      </ul>
+    </div>
+
+    <!-- 3D Poetry Card -->
+    <div class="card poetry" id="poetry-card">
+      <div class="poetry-front">
+        <p>
+          ஒரு வீட்டுச் கஞ்சி அல்ல,<br>
+          ஊரே சேர்த்த கஞ்சி.<br>
+          ஒரு மனசு… ஒரு நம்பிக்கை…<br>
+          ஒரு சாமி அருள்.
+        </p>
+        <p style="margin-top: 10px; font-size: 0.9rem; color: #6b7280;">
+          (தொடு - மறுபக்கம் பார்க்க)
+        </p>
+      </div>
+      <div class="poetry-back">
+        <p>
+          மாட்டின் உழைப்புக்கு நன்றி,<br>
+          பூமியின் வளத்துக்கு நன்றி,<br>
+          மழையின் கருணைக்கு நன்றி,<br>
+          சாமியின் அருளுக்கு நன்றி.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title"><i class="fas fa-hands"></i> அன்பான அழைப்பு</div>
+      <p>நம்பிக்கை & வழக்கம் • பரம்பரை மரபு • கிராம ஒற்றுமை</p>
+      <div class="organizers">— ஊர் பொதுமக்கள் & திருவிழா குழுவினர் —</div>
+      <p style="margin-top: 15px; font-size: 0.9rem;">
+        இந்த மாட்டு பொங்கல் அன்று, சாமி மாடி அபிஷேகத்தில் கலந்து கொண்டு, கையில கஞ்சி மட்டும் இல்ல… மனசையும் சாமி கையில கொடுப்போம்.
+        நம்ம ஊர் மக்கள் அனைவரும் மாலை 5:45 மணி முதல் 6:30 மணிக்குள் கோயிலுக்கு வந்து, தங்கள் வீட்டில் பொங்க வைத்த கஞ்சி நீரை கொண்டு வந்து இந்த புனித பூஜையில் கலந்து கொண்டு சாமி அருளை முழுமையாகப் பெறுமாறு அன்புடன் கேட்டுக் கொள்ளப்படுகிறார்கள்.
+      </p>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div style="margin-bottom: 20px;">
+      <i class="fas fa-leaf" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.8;"></i>
+      <br>
+      🌼 சாமி அருளால்  
+      <br>மனசு நிம்மதியா இருக்கட்டும்  
+      <br>வீடு வளமா இருக்கட்டும்  
+      <br>மாடு நலமா இருக்கட்டும்  
+      <br>நம்ம ஊர் எப்பவும் ஒன்றுபட்டே இருக்கட்டும்
+    </div>
+    <b>— ஊர் பொதுமக்கள் & திருவிழா குழுவினர்</b>
+
+    <div class="mantra">
+      <i class="fas fa-om"></i> கிருஷ்ணர் — "ஓம் நமோ பகவதே வாசுதேவாய"<br>
+      <i class="fas fa-om"></i> சக்காளம்மன் — "ஓம் ஹ்ரீம் சக்தியே நமஹ"
+    </div>
+  </div>
+</div>
+
+<script>
+// Audio Player
+const audio = new Audio('https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3');
+const playBtn = document.getElementById('play-btn');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const progressBar = document.getElementById('progress-bar');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+
+let isPlaying = false;
+
+function togglePlay() {
+  if (isPlaying) {
+    audio.pause();
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+  } else {
+    audio.play();
+    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+  }
+  isPlaying = !isPlaying;
+}
+
+function updateProgress() {
+  const { currentTime, duration } = audio;
+  const progressPercent = (currentTime / duration) * 100;
+  progressBar.style.width = `${progressPercent}%`;
+  
+  // Format time
+  const formatTime = (time) => {
+    const mins = Math.floor(time / 60);
+    const secs = Math.floor(time % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+  
+  currentTimeEl.textContent = formatTime(currentTime);
+  if (duration) {
+    durationEl.textContent = formatTime(duration);
+  }
+}
+
+function setProgress(e) {
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+  
+  audio.currentTime = (clickX / width) * duration;
+}
+
+playBtn.addEventListener('click', togglePlay);
+prevBtn.addEventListener('click', () => {
+  audio.currentTime = Math.max(0, audio.currentTime - 10);
+});
+nextBtn.addEventListener('click', () => {
+  audio.currentTime = Math.min(audio.duration, audio.currentTime + 10);
+});
+audio.addEventListener('timeupdate', updateProgress);
+audio.addEventListener('ended', () => {
+  isPlaying = false;
+  playBtn.innerHTML = '<i class="fas fa-play"></i>';
+});
+
+// Set fake duration for demo
+audio.addEventListener('loadedmetadata', () => {
+  durationEl.textContent = '1:30';
+});
+
+// Touch color change functionality
+const colorButtons = document.querySelectorAll('.color-btn');
+const colorChangeArea = document.getElementById('color-change-area');
+
+colorButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const color = this.getAttribute('data-color');
+    colorChangeArea.style.background = color;
+    
+    // Add animation effect
+    colorChangeArea.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      colorChangeArea.style.transform = 'scale(1)';
+    }, 300);
+  });
+});
+
+// 3D Flip for poetry card
+const poetryCard = document.getElementById('poetry-card');
+let isFlipped = false;
+
+poetryCard.addEventListener('click', function() {
+  isFlipped = !isFlipped;
+  if (isFlipped) {
+    this.classList.add('flipped');
+  } else {
+    this.classList.remove('flipped');
+  }
+});
+
+// Mobile touch events for cards
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+  card.addEventListener('touchstart', function() {
+    this.style.transform = 'scale(0.98)';
+  });
+  
+  card.addEventListener('touchend', function() {
+    this.style.transform = 'scale(1)';
+  });
+});
+
+// Floating animation for multiple elements
+const floatingElements = document.querySelectorAll('.floating');
+floatingElements.forEach((el, index) => {
+  el.style.animationDelay = `${index * 0.5}s`;
+});
+
+// Parallax effect on scroll
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const parallaxElements = document.querySelectorAll('.card-3d');
+  
+  parallaxElements.forEach((el, index) => {
+    const rate = scrolled * 0.05 * (index % 2 === 0 ? 1 : -1);
+    el.style.transform = `translateY(${rate}px) rotateY(${rate*0.5}deg)`;
+  });
+});
+
+// Initialize with some animations
+document.addEventListener('DOMContentLoaded', () => {
+  // Add some confetti effect on load
+  setTimeout(() => {
+    const confettiCount = 20;
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div');
+      confetti.innerHTML = '🌾';
+      confetti.style.position = 'fixed';
+      confetti.style.fontSize = '20px';
+      confetti.style.left = `${Math.random() * 100}vw`;
+      confetti.style.top = '-30px';
+      confetti.style.zIndex = '9999';
+      confetti.style.pointerEvents = 'none';
+      confetti.style.opacity = '0.7';
+      document.body.appendChild(confetti);
+      
+      // Animate confetti
+      const animation = confetti.animate([
+        { transform: 'translateY(0) rotate(0deg)', opacity: 0.7 },
+        { transform: `translateY(${window.innerHeight}px) rotate(${360 + Math.random() * 360}deg)`, opacity: 0 }
+      ], {
+        duration: 2000 + Math.random() * 3000,
+        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+      });
+      
+      animation.onfinish = () => confetti.remove();
+    }
+  }, 1000);
+});
+</script>
+</body>
+</html>
